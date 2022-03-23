@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">MyFirebase</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="text_login">Login</string>
+    <string name="text_register">Register</string>
+    <string name="error_message_username">Enter Username</string>
+    <string name="error_message_password">Enter Password</string>
+    <string name="error_message_role">Select Your Role</string>
+    <string name="success_message">Registration Successful</string>
+    <string name="text_not_member">No account yet? Create one</string>
+    <string name="text_already_member">Already a member? Login</string>
+    <string name="error_username_exists">Username Already Exists</string>
+    <string name="error_password_match">Password Does Not Matches</string>
+    <string name="error_valid_email_password">Wrong Email or Password</string>
+    <string name="radio_seller">Seller</string>
+    <string name="radio_buyer">Buyer</string>
+    <string name="hint_product_name">Product Name</string>
+    <string name="hint_product_price">Product Price</string>
+    <string name="hint_product_buyer">Product Buyer</string>
+    <string name="hint_product_quantity">Quantity</string>
+    <string name="text_add_product">Add Product</string>
+    <string name="text_remove_product">Remove Product</string>
+    <string name="text_add_to_cart">Add To Cart</string>
+    <string name="text_back">Back</string>
+    <string name="error_message_product_name">Enter Product Name</string>
+    <string name="error_message_product_price">Enter Product Price</string>
+    <string name="product_success_message">Add Product Successful</string>
+    <string name="error_product_exists">Product Already Exists</string>
+
+    <string-array name="roles">
+        <item>---You Want to Be A?---</item>
+        <item>Seller</item>
+        <item>Buyer</item>
+    </string-array>
+</resources>

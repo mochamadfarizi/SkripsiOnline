@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/titleSellerHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="SELLER HOME"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/ButtonAddProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/ButtonBuyerCart"
+        android:text="Add Product" />
+    <Button
+        android:id="@+id/ButtonRefreshProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:backgroundTint="#43FF82"
+        android:textColor="@color/black"
+        android:layout_above="@+id/ButtonBuyerCart"
+        android:text="Refresh Product" />
+    <Button
+        android:id="@+id/ButtonBuyerCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:backgroundTint="#43FF82"
+        android:textColor="@color/black"
+        android:layout_above="@+id/ButtonRefreshProduct"
+        android:text="See Buyer Cart" />
+    <Button
+        android:id="@+id/ButtonLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#ED1C35"
+        android:textColor="@color/white"
+        android:text="Logout" />
+
+</LinearLayout>
