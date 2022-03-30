@@ -1,6 +1,5 @@
 package org.online.myfirebase.activity.seller;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -25,17 +24,20 @@ public class DetailProductSeller extends AppCompatActivity implements View.OnCli
     private Product product;
     Cursor cursor;
 
-protected void onCreate(Bundle savedInstanceState) {
+
+
+    protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_detail_product_seller);
     //inisiasi Firebase database
     database=FirebaseDatabase.getInstance().getReference();
+    //inisialisasi view
     textInputEditTextProductName=(TextInputEditText) findViewById(R.id.textInputEditTextProductName);
-    textInputEditTextProductName.setKeyListener(null);
     textInputEditTextProductPrice=(TextInputEditText) findViewById(R.id.textInputEditTextProductPrice);
-    textInputEditTextProductPrice.setKeyListener(null);
     ButtonRemoveProduct=(AppCompatButton)findViewById(R.id.ButtonRemoveProduct);
     ButtonBack=(AppCompatButton)findViewById(R.id.ButtonBack);
+
+
     //perintah untuk mengeset data pada Data yang tersimpan pada adapter
     String nama=getIntent().getStringExtra("nama");
     String price=getIntent().getStringExtra("price");
@@ -58,7 +60,6 @@ protected void onCreate(Bundle savedInstanceState) {
         switch ( v.getId()){
             case R.id.ButtonRemoveProduct:
                 deleteDataFirebase();
-                Toast.makeText(this, "Remove Data Succes!", Toast.LENGTH_SHORT).show();
                 finish();
             case R.id.ButtonBack:
                 finish();
@@ -72,16 +73,18 @@ protected void onCreate(Bundle savedInstanceState) {
          * berdasarkan key barang.
          * Jika sukses akan memunculkan Toast
          */
-        if (database!=null){
-            database.child("Product").child(product.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void avoid) {
-                    Toast.makeText(DetailProductSeller.this, "Data has ben removed", Toast.LENGTH_SHORT).show();
-                }
-            });
+           database.child("Product").removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+               @Override
+               public void onSuccess(Void unused) {
+                   Toast.makeText(DetailProductSeller.this, "Data has been removed", Toast.LENGTH_SHORT).show();
+               }
+           });
+
+
+
         }
     }
 
-    }
+
 
 

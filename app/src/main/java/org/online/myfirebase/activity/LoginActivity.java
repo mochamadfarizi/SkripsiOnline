@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.online.myfirebase.R;
 import org.online.myfirebase.activity.buyer.BuyerHomeActivity;
+import org.online.myfirebase.activity.buyer.DetailProductBuyer;
 import org.online.myfirebase.activity.seller.SellerHomeActivity;
 import org.online.myfirebase.model.user;
 
@@ -102,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(LoginActivity.this, SellerHomeActivity.class));
+                    startActivity(new Intent(LoginActivity.this, BuyerHomeActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }

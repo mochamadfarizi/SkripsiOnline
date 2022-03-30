@@ -95,7 +95,7 @@ private void iniObject(){
         /**
          * Inisialisasi dan mengambil Firebase Database Reference
          */
-        getDataFromFirebase();
+            getDataFromFirebase();
 
 
 }
@@ -111,9 +111,9 @@ private void iniObject(){
                  */
                 listProducts = new ArrayList<>();
                 for (DataSnapshot mDataSnapshot : dataSnapshot.getChildren()) {
-                    Product barang = mDataSnapshot.getValue(Product.class);
-                    barang.setKey(mDataSnapshot.getKey());
-                    listProducts.add(barang);
+                    Product product = mDataSnapshot.getValue(Product.class);
+                    product.setKey(mDataSnapshot.getKey());
+                    listProducts.add(product);
                 }
 
                 productsRecyclerAdapter = new ProductsRecyclerAdapter(SellerHomeActivity.this, listProducts);
@@ -128,6 +128,7 @@ private void iniObject(){
                         intent.putExtra("nama",listProducts.get(position).getName());
                         intent.putExtra("price",listProducts.get(position).getPrice());
                         startActivity(intent);
+
 
                     }
 

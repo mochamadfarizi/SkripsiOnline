@@ -1,8 +1,11 @@
 package org.online.myfirebase.model;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 
 public class Product implements Serializable {
+    @Exclude
     public String price;
     public String key;
     public String name;
