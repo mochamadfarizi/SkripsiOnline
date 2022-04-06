@@ -88,14 +88,14 @@ private void iniObject(){
    // Inisialisasi RecyclerView & komponennya
         listProducts = new ArrayList<>();
         productsRecyclerAdapter = new ProductsRecyclerAdapter(mContext, listProducts);
-        recyclerViewProducts.setLayoutManager(new LinearLayoutManager(this, recyclerViewProducts.VERTICAL, false));
+        recyclerViewProducts.setLayoutManager(new LinearLayoutManager(this, recyclerViewProducts.VERTICAL, true));
         recyclerViewProducts.setItemAnimator(new DefaultItemAnimator());
         recyclerViewProducts.setHasFixedSize(false);
         recyclerViewProducts.setAdapter(productsRecyclerAdapter);
         /**
          * Inisialisasi dan mengambil Firebase Database Reference
          */
-            getDataFromFirebase();
+           // getDataFromFirebase();
 
 
 }
@@ -146,10 +146,6 @@ private void iniObject(){
             }
         });
     }
-    private void openDetailProductActivity(int productId) {
-        Intent intent = new Intent(getApplicationContext(), DetailProductSeller.class);
-        intent.putExtra("productID", productId);
-        startActivity(intent);
-    }
+
 }
 

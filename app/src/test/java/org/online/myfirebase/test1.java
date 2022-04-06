@@ -65,7 +65,7 @@ public class test1 extends ViewTest{
         });
     }
     @Test
-    public void check_05_ActivityName() { //Check Activity Name (Should be MyActivity)
+    public void check_05_ActivityName() { //Check Activity Name (Should be LoginActivity)
         scenario.onActivity(activity -> {
             Assert.assertEquals("Activity Name is Wrong", actName, activity.getClass().getSimpleName());
         });

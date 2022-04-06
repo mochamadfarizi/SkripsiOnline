@@ -104,8 +104,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     startActivity(new Intent(LoginActivity.this, BuyerHomeActivity.class));
+                    Toast.makeText(LoginActivity.this, "Login Successfully,Enjoy Your Shopping!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Login Failed,Please Try Again Dude", Toast.LENGTH_SHORT).show();
                 }
             }
         });

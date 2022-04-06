@@ -88,6 +88,7 @@ public class BuyerHomeActivity extends AppCompatActivity implements View.OnClick
         }
     }
     private void getDataFromFirebase() {
+        //inisialisasi firebase database
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // method get data
         mDatabase.child("Product").addValueEventListener(new ValueEventListener() {

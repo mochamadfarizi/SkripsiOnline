@@ -4,9 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/activity_add_product.xml" value="0.20416666666666666" />
+        <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/activity_buyer_detail_cart.xml" value="0.1" />
         <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/activity_buyer_home.xml" value="0.1" />
+        <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/activity_cart_buyer.xml" value="0.1" />
         <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/activity_detail_product_buyer.xml" value="0.1" />
+        <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/activity_detail_product_seller.xml" value="0.1" />
+        <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/activity_login.xml" value="0.2006340579710145" />
+        <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/activity_seller_detail_cart.xml" value="0.2006340579710145" />
+        <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/item_cart_recycler.xml" value="0.20199275362318841" />
         <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/item_product_recycler.xml" value="0.20416666666666666" />
+        <entry key="..\:/kuliah/smt8/GUIDE/latihan/Firebase/app/src/main/res/layout/item_user_recycler.xml" value="0.2006340579710145" />
       </map>
     </option>
   </component>
