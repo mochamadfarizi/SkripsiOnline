@@ -3,9 +3,8 @@ package org.online.myfirebase.model;
 import java.io.Serializable;
 
 public class Cart implements Serializable {
-    private int id;
-    private String username;
-    private int key;
+    private String buyer;
+    private String key;
     private String cartName;
     private String cartPrice;
     private int cartQuantity;
@@ -14,27 +13,19 @@ public class Cart implements Serializable {
 
     }
 
-    public Cart(String nama, String harga,int Quantyty){
+    public Cart(String user,String nama, String harga,int Quantyty){
+        buyer=user;
         cartName =nama;
         cartPrice =harga;
         cartQuantity=Quantyty;
     }
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getUsername() {
-        return username;
+        return buyer;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.buyer= username;
     }
 
     public String getProductName() {
@@ -53,14 +44,6 @@ public class Cart implements Serializable {
         this.cartPrice = productPrice;
     }
 
-    public int getProductId() {
-        return key;
-    }
-
-    public void setProductId(int productId) {
-        this.key = productId;
-    }
-
     public int getProductQuantity() {
         return cartQuantity;
     }
@@ -68,12 +51,20 @@ public class Cart implements Serializable {
     public void setProductQuantity(int productQuantity) {
         this.cartQuantity = productQuantity;
     }
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String toString() {
-        return " "+cartName+"\n" +
+        return " "+buyer+"\n" +
+                " "+cartName+"\n"+
                 " "+cartPrice+"\n"+
-                " "+cartQuantity+"\n"+
-                " "+username;
+                " "+cartQuantity;
+
 
     }
 }

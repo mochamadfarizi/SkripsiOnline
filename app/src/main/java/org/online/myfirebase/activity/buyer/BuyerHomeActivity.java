@@ -30,6 +30,7 @@ import java.util.List;
 
 
 public class BuyerHomeActivity extends AppCompatActivity implements View.OnClickListener {
+    private AppCompatActivity activity = BuyerHomeActivity.this;
     private RecyclerView recyclerViewProducts;
     private ArrayList<Product> listProducts;
     private ProductsRecyclerAdapter productsRecyclerAdapter;
@@ -80,7 +81,7 @@ public class BuyerHomeActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ButtonBuyerCart:
-                //startActivity(new Intent(BuyerHomeActivity.this, DetailProductBuyer.class));Intent intent = new Intent();
+               startActivity(new Intent(BuyerHomeActivity.this,CartActivityBuyer.class));
                 break;
             case R.id.ButtonLogout:
                 finish();

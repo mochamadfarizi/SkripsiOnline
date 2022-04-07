@@ -26,6 +26,23 @@
             android:layout_marginTop="40dp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutProductUser"
+            android:enabled="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditTextProductUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="User Buyer"
+                android:cursorVisible="true"
+                android:maxLines="1"
+                android:textColor="@android:color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutProductName"
             android:enabled="false"
             android:layout_width="match_parent"

@@ -24,20 +24,17 @@ public class CartsRecyclerAdapter extends RecyclerView.Adapter<CartsRecyclerAdap
         mContext = context;
 
     }
-
     @NonNull
     @Override
     public CartsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // inflating recycler item view
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_cart_recycler, parent, false);
-
         return new CartsViewHolder(itemView, mListener);
     }
-
     @Override
     public void onBindViewHolder(CartsViewHolder holder, int position) {
-        holder.cartID.setText(String.valueOf(listCarts.get(position).getId()));
+        holder.cartID.setText(String.valueOf(listCarts.get(position).getKey()));
         holder.productName.setText(listCarts.get(position).getProductName());
         holder.productPrice.setText(String.valueOf(listCarts.get(position).getProductPrice()));
         holder.productQuantity.setText(String.valueOf(listCarts.get(position).getProductQuantity()));
@@ -46,7 +43,7 @@ public class CartsRecyclerAdapter extends RecyclerView.Adapter<CartsRecyclerAdap
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listCarts.size();
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -76,7 +73,7 @@ public class CartsRecyclerAdapter extends RecyclerView.Adapter<CartsRecyclerAdap
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(android.view.View v) {
+                public void onClick(View v) {
                     if (listener != null){
                         int position = getAdapterPosition();
                         if(position != RecyclerView.NO_POSITION){

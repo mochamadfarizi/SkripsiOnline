@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.online.myfirebase.R;
 import org.online.myfirebase.activity.seller.DetailProductSeller;
 import org.online.myfirebase.model.Product;
+import org.online.myfirebase.model.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecyclerAdapter.ProductsViewHolder>{
@@ -27,7 +29,9 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
         this.listProducts = listProducts;
         mContext = context;
 
+
     }
+
 
     @NonNull
     @Override
@@ -73,7 +77,6 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                         if (listener != null){
                             int position = getAdapterPosition();
                             if(position != RecyclerView.NO_POSITION){

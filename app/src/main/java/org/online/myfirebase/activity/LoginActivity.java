@@ -34,6 +34,7 @@ import org.online.myfirebase.model.user;
 import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
+    private final AppCompatActivity activity = LoginActivity.this;
     private TextView textViewLink;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference reference;
@@ -67,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 userLogin();
             }
         });
@@ -103,8 +103,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(LoginActivity.this, BuyerHomeActivity.class));
-                    Toast.makeText(LoginActivity.this, "Login Successfully,Enjoy Your Shopping!", Toast.LENGTH_SHORT).show();
+                    Intent buyer = new Intent(activity, BuyerHomeActivity.class);
+                    buyer.putExtra("Username", nama.getText().toString().trim());
+                    startActivity(buyer);
+                    Toast.makeText(getApplicationContext(), "Welcome here "+nama.getText().toString(),Toast.LENGTH_LONG).show();
+                    emptyInputEditText();
                 } else {
                     Toast.makeText(LoginActivity.this, "Login Failed,Please Try Again Dude", Toast.LENGTH_SHORT).show();
                 }
@@ -112,44 +115,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void GetRole() {
-        mGetReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+    private void emptyInputEditText() {
+        nama.setText(null);
+        pass.setText(null);
+    }
 
-                if (dataSnapshot.exists()) {
-                    HashMap<String, Object> dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
-                    for (String key : dataMap.keySet()) {
-                        Object data = dataMap.get(key);
-                        try {
-                            HashMap<String, Object> userData = (HashMap<String, Object>) data;
-                             user mUser = new user((String) userData.get("role"));
-                             mUser.getRole();
-                            if (mUser.equals("Seller")) {
-                                startActivity(new Intent(LoginActivity.this, SellerHomeActivity.class));
-                            }
-                           else if (mUser.equals("Buyer")) {
-                                startActivity(new Intent(LoginActivity.this, BuyerHomeActivity.class));
-                            }
-                           return;
-                        } catch (ClassCastException cce) {
-// If the object can’t be casted into HashMap, it means that it is of type String.
-                            try {
-                                String mString = String.valueOf(dataMap.get(key));
-                            } catch (ClassCastException cce2) {
-                            }
-                        }
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
 
     }
-}
+
 
 
 

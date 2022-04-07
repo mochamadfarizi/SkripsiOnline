@@ -26,6 +26,7 @@
         <activity android:name=".activity.AddProductActivity"/>
         <activity android:name=".activity.seller.DetailProductSeller"/>
         <activity android:name=".activity.buyer.DetailProductBuyer"/>
+        <activity android:name=".activity.buyer.CartActivityBuyer"/>
     </application>
 
 </manifest>
