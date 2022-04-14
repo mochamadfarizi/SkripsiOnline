@@ -39,6 +39,7 @@
                 android:hint="User Buyer"
                 android:cursorVisible="true"
                 android:maxLines="1"
+                android:enabled="true"
                 android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 

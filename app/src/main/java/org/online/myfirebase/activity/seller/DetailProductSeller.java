@@ -3,12 +3,10 @@ package org.online.myfirebase.activity.seller;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -19,7 +17,7 @@ import org.online.myfirebase.model.Product;
 
 public class DetailProductSeller extends AppCompatActivity implements View.OnClickListener{
     private TextInputEditText textInputEditTextProductName, textInputEditTextProductPrice;
-    private AppCompatButton ButtonRemoveProduct, ButtonBack;
+    private AppCompatButton  ButtonBack;
     private DatabaseReference database;
     private Product product;
     Cursor cursor;
@@ -34,7 +32,6 @@ public class DetailProductSeller extends AppCompatActivity implements View.OnCli
     //inisialisasi view
     textInputEditTextProductName=(TextInputEditText) findViewById(R.id.textInputEditTextProductName);
     textInputEditTextProductPrice=(TextInputEditText) findViewById(R.id.textInputEditTextProductPrice);
-    ButtonRemoveProduct=(AppCompatButton)findViewById(R.id.ButtonRemoveProduct);
     ButtonBack=(AppCompatButton)findViewById(R.id.ButtonBack);
 
 
@@ -50,7 +47,7 @@ public class DetailProductSeller extends AppCompatActivity implements View.OnCli
 
 
     private void initListeners() {
-        ButtonRemoveProduct.setOnClickListener(this);
+
         ButtonBack.setOnClickListener(this);
 
     }
@@ -58,32 +55,14 @@ public class DetailProductSeller extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch ( v.getId()){
-            case R.id.ButtonRemoveProduct:
-                deleteDataFirebase();
-                finish();
             case R.id.ButtonBack:
                 finish();
         }
 
     }
-    //Class untuk menghapus data pada firebase
-    private void deleteDataFirebase() {
-        /**
-         * Kode Yang kemudian akan mendelete data di Firebase Realtime DB
-         * berdasarkan key barang.
-         * Jika sukses akan memunculkan Toast
-         */
-           database.child("Product").removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-               @Override
-               public void onSuccess(Void unused) {
-                   Toast.makeText(DetailProductSeller.this, "Data has been removed", Toast.LENGTH_SHORT).show();
-               }
-           });
-
-
-
         }
-    }
+
+
 
 
 

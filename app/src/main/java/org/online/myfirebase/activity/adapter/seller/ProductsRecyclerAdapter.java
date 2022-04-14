@@ -1,35 +1,35 @@
-package org.online.myfirebase.activity.adapter;
+package org.online.myfirebase.activity.adapter.seller;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.online.myfirebase.R;
-import org.online.myfirebase.activity.seller.DetailProductSeller;
+import org.online.myfirebase.activity.seller.SellerHomeActivity;
 import org.online.myfirebase.model.Product;
-import org.online.myfirebase.model.user;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecyclerAdapter.ProductsViewHolder>{
     private List<Product> listProducts;
     private Context mContext;
     private OnItemClickListener mListener;
-    delete listener;
+    dataListener listener;
 
+    public interface dataListener{
+        void onDeleteData(Product data, int position);
+    }
     public ProductsRecyclerAdapter(Context context, List<Product> listProducts) {
         this.listProducts = listProducts;
-        mContext = context;
-
-
+        this.mContext = context;
+        listener = (SellerHomeActivity)context;
     }
 
 
@@ -47,6 +47,12 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
         holder.productId.setText(listProducts.get(position).getKey());
         holder.productName.setText(listProducts.get(position).getName());
         holder.productPrice.setText(String.valueOf(listProducts.get(position).getPrice()));
+        holder.deletedata.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               listener.onDeleteData(listProducts.get(position), position);
+           }
+       });
     }
 
     @Override
@@ -66,13 +72,16 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
         public TextView productName;
         public TextView productPrice;
         public TextView textViewButton;
+        public Button deletedata;
         public RecyclerView recyclerView;
-
+        private LinearLayout listitem;
         public ProductsViewHolder(@NonNull View view, final OnItemClickListener listener) {
             super(view);
+            listitem= itemView.findViewById(R.id.list_item);
             productId = (TextView) view.findViewById(R.id.ProductID);
             productName = (TextView) view.findViewById(R.id.ProductName);
             productPrice = (TextView) view.findViewById(R.id.ProductPrice);
+            deletedata=(Button) view.findViewById(R.id.ButtonDelete);
             recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewProducts);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -83,14 +92,13 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
                                 listener.onItemClick(view, position);
                             }
                         }
-
                 }
             });
         }
 
 
     }
-    public interface delete{
-        void onDeleteData(Product product,int position);
+
     }
-}
+
+

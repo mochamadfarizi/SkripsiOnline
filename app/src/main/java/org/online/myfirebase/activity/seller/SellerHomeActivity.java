@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,13 +23,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.online.myfirebase.R;
 import org.online.myfirebase.activity.AddProductActivity;
-import org.online.myfirebase.activity.adapter.ProductsRecyclerAdapter;
+import org.online.myfirebase.activity.adapter.seller.ProductsRecyclerAdapter;
 import org.online.myfirebase.model.Product;
 
 
 import java.util.ArrayList;
 
-public class SellerHomeActivity extends AppCompatActivity implements View.OnClickListener{
+public class SellerHomeActivity extends AppCompatActivity implements ProductsRecyclerAdapter.dataListener {
 
 
     private RecyclerView recyclerViewProducts;
@@ -44,48 +46,45 @@ public class SellerHomeActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_seller_home);
         //inisialisasi view
         recyclerViewProducts = (RecyclerView) findViewById(R.id.recyclerViewProducts);
-        ButtonAddProduct = (Button)findViewById(R.id.ButtonAddProduct);
-        ButtonRefreshProduct = (Button)findViewById(R.id.ButtonRefreshProduct);
-        ButtonBuyerCart = (Button)findViewById(R.id.ButtonBuyerCart);
-        ButtonLogout = (Button)findViewById(R.id.ButtonLogout);
+        ButtonAddProduct = (Button) findViewById(R.id.ButtonAddProduct);
+        ButtonRefreshProduct = (Button) findViewById(R.id.ButtonRefreshProduct);
+        ButtonBuyerCart = (Button) findViewById(R.id.ButtonBuyerCart);
+        ButtonLogout = (Button) findViewById(R.id.ButtonLogout);
 
         //inisialisasi Firebase
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         iniObject();
-        initListeners();
-    }
-
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.ButtonAddProduct:
+        ButtonAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 startActivity(new Intent(SellerHomeActivity.this, AddProductActivity.class));
-                break;
-            case R.id.ButtonRefreshProduct:
+            }
+        });
+
+        ButtonRefreshProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 getDataFromFirebase();
-                break;
-            case R.id.ButtonBuyerCart:
+            }
+        });
+
+        ButtonBuyerCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 startActivity(new Intent(SellerHomeActivity.this, CartActivitySeller.class));
-                break;
-            case R.id.ButtonLogout:
+            }
+        });
+        ButtonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
-                break;
-
-        }
+            }
+        });
     }
 
-    private void initListeners() {
-        ButtonAddProduct.setOnClickListener(this);
-        ButtonRefreshProduct.setOnClickListener(this);
-        ButtonBuyerCart.setOnClickListener(this);
-        ButtonLogout.setOnClickListener(this);
-    }
-
-private void iniObject(){
-   // Inisialisasi RecyclerView & komponennya
+    private void iniObject() {
+        // Inisialisasi RecyclerView & komponennya
         listProducts = new ArrayList<>();
         productsRecyclerAdapter = new ProductsRecyclerAdapter(mContext, listProducts);
         recyclerViewProducts.setLayoutManager(new LinearLayoutManager(this, recyclerViewProducts.VERTICAL, true));
@@ -95,10 +94,10 @@ private void iniObject(){
         /**
          * Inisialisasi dan mengambil Firebase Database Reference
          */
-           // getDataFromFirebase();
+        getDataFromFirebase();
 
 
-}
+    }
 
     private void getDataFromFirebase() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -118,21 +117,19 @@ private void iniObject(){
 
                 productsRecyclerAdapter = new ProductsRecyclerAdapter(SellerHomeActivity.this, listProducts);
                 recyclerViewProducts.setAdapter(productsRecyclerAdapter);
-                productsRecyclerAdapter.setOnItemClickListener(new ProductsRecyclerAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view,final int position) {
-                        //inisialisasi view pada Detail product
-                        Intent intent = new Intent(getApplicationContext(), DetailProductSeller.class);
-                        //pengambilan data yang tersimpan pada adapter
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("nama",listProducts.get(position).getName());
-                        intent.putExtra("price",listProducts.get(position).getPrice());
-                        startActivity(intent);
+               productsRecyclerAdapter.setOnItemClickListener(new ProductsRecyclerAdapter.OnItemClickListener() {
+                   @Override
+                   public void onItemClick(View view,  final int position) {
+                       //inisialisasi view pada Detail product
+                       Intent intent = new Intent(getApplicationContext(), DetailProductSeller.class);
+                       //pengambilan data yang tersimpan pada adapter
+                       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                       intent.putExtra("nama",listProducts.get(position).getName());
+                       intent.putExtra("price",listProducts.get(position).getPrice());
+                       startActivity(intent);
+                   }
+               });
 
-
-                    }
-
-                });
             }
 
             @Override
@@ -142,10 +139,27 @@ private void iniObject(){
                  * pengambilan data gagal dan memprint error nya
                  * ke LogCat
                  */
-                System.out.println(error.getDetails()+" "+error.getMessage());
+                System.out.println(error.getDetails() + " " + error.getMessage());
             }
         });
     }
 
+
+    @Override
+    public void onDeleteData(Product data, int position) {
+        /**
+         * Kode Yang kemudian akan mendelete data di Firebase Realtime DB
+         * berdasarkan key barang.
+         * Jika sukses akan memunculkan Toast
+         */
+        mDatabase.child("Product").child(data.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(SellerHomeActivity.this, "Data has been removed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
+
+
 

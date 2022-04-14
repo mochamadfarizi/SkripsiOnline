@@ -68,7 +68,18 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userLogin();
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("user").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       userLogin();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
         textViewLink.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
     private void userLogin() {
         String nama1 = nama.getText().toString().trim();
         String pass1 = pass.getText().toString().trim();
-        Query role = mGetReference.orderByChild("role");
+        DatabaseReference role = mGetReference.child("role");
         if (nama1.isEmpty()) {
             nama.setError("Email required!");
             nama.requestFocus();
@@ -102,12 +113,15 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(nama1, pass1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful()) {
-                    Intent buyer = new Intent(activity, BuyerHomeActivity.class);
-                    buyer.putExtra("Username", nama.getText().toString().trim());
-                    startActivity(buyer);
-                    Toast.makeText(getApplicationContext(), "Welcome here "+nama.getText().toString(),Toast.LENGTH_LONG).show();
-                    emptyInputEditText();
+
+                        Intent buyer = new Intent(activity, BuyerHomeActivity.class);
+                        buyer.putExtra("Username", nama.getText().toString().trim());
+                        startActivity(buyer);
+                        Toast.makeText(getApplicationContext(), "Welcome here " + nama.getText().toString(), Toast.LENGTH_LONG).show();
+                        emptyInputEditText();
+
                 } else {
                     Toast.makeText(LoginActivity.this, "Login Failed,Please Try Again Dude", Toast.LENGTH_SHORT).show();
                 }

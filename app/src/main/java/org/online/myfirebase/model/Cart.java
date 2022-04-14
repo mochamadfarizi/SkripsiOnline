@@ -7,13 +7,13 @@ public class Cart implements Serializable {
     private String key;
     private String cartName;
     private String cartPrice;
-    private int cartQuantity;
+    private String cartQuantity;
 
     public Cart(){
 
     }
 
-    public Cart(String user,String nama, String harga,int Quantyty){
+    public Cart(String user,String nama, String harga,String Quantyty){
         buyer=user;
         cartName =nama;
         cartPrice =harga;
@@ -44,11 +44,11 @@ public class Cart implements Serializable {
         this.cartPrice = productPrice;
     }
 
-    public int getProductQuantity() {
+    public String getProductQuantity() {
         return cartQuantity;
     }
 
-    public void setProductQuantity(int productQuantity) {
+    public void setProductQuantity(String productQuantity) {
         this.cartQuantity = productQuantity;
     }
     public String getKey() {

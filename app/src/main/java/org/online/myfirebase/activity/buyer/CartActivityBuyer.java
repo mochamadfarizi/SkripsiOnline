@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,18 +22,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.online.myfirebase.R;
-import org.online.myfirebase.activity.adapter.CartsRecyclerAdapter;
+import org.online.myfirebase.activity.adapter.buyer.BuyerCartsRecyclerAdapter;
+import org.online.myfirebase.activity.adapter.seller.CartsRecyclerAdapter;
+import org.online.myfirebase.activity.seller.SellerHomeActivity;
 import org.online.myfirebase.model.Cart;
 import java.util.ArrayList;
-import java.util.List;
 
-public class CartActivityBuyer extends AppCompatActivity implements View.OnClickListener{
+public class CartActivityBuyer extends AppCompatActivity implements View.OnClickListener, CartsRecyclerAdapter.dataListener {
         private ArrayList<Cart> listCarts;
         private AppCompatTextView textViewName;
         private DatabaseReference mDatabase;
         private Button ButtonRefreshCart, ButtonBack;
         private RecyclerView recyclerViewCarts;
-        private CartsRecyclerAdapter cartsRecyclerAdapter;
+        private BuyerCartsRecyclerAdapter cartsRecyclerAdapter;
         Context mContext;
 
     @Override
@@ -56,7 +59,7 @@ public class CartActivityBuyer extends AppCompatActivity implements View.OnClick
     }
     private void initObject() {
         listCarts = new ArrayList<>();
-        cartsRecyclerAdapter = new CartsRecyclerAdapter(mContext, listCarts);
+        cartsRecyclerAdapter = new BuyerCartsRecyclerAdapter(mContext, listCarts);
         recyclerViewCarts.setLayoutManager(new LinearLayoutManager(this, recyclerViewCarts.VERTICAL, true));
         recyclerViewCarts.setItemAnimator(new DefaultItemAnimator());
         recyclerViewCarts.setHasFixedSize(false);
@@ -96,22 +99,8 @@ public class CartActivityBuyer extends AppCompatActivity implements View.OnClick
                     cart.setKey(mDataSnapshot.getKey());
                     listCarts.add(cart);
                 }
-                cartsRecyclerAdapter = new CartsRecyclerAdapter(CartActivityBuyer.this,listCarts);
+                cartsRecyclerAdapter = new BuyerCartsRecyclerAdapter(CartActivityBuyer.this,listCarts);
                 recyclerViewCarts.setAdapter(cartsRecyclerAdapter);
-                cartsRecyclerAdapter.setOnItemClickListener(new CartsRecyclerAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, final int position) {
-                        //inisialisasi view pada Detail product
-                        Intent intent = new Intent(getApplicationContext(), BuyerDetailCartActivity.class);
-                        //pengambilan data yang tersimpan pada adapter
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("name",listCarts.get(position).getUsername());
-                        intent.putExtra("name_product",listCarts.get(position).getProductName());
-                        intent.putExtra("price",listCarts.get(position).getProductPrice());
-                        intent.putExtra("Quantyty",listCarts.get(position).getProductQuantity());
-                        startActivity(intent);
-                    }
-                });
             }
 
             @Override
@@ -127,6 +116,18 @@ public class CartActivityBuyer extends AppCompatActivity implements View.OnClick
     }
 
 
-
-
+    @Override
+    public void onDeleteData(Cart data, int position) {
+        /**
+         * Kode Yang kemudian akan mendelete data di Firebase Realtime DB
+         * berdasarkan key barang.
+         * Jika sukses akan memunculkan Toast
+         */
+        mDatabase.child("Cart").child(data.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(CartActivityBuyer.this, "Data has been removed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

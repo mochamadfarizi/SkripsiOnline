@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,21 +21,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.online.myfirebase.R;
-import org.online.myfirebase.activity.AddProductActivity;
-import org.online.myfirebase.activity.adapter.ProductsRecyclerAdapter;
-import org.online.myfirebase.activity.seller.DetailProductSeller;
+import org.online.myfirebase.activity.adapter.buyer.BuyerProductsRecyclerAdapter;
+import org.online.myfirebase.activity.adapter.seller.ProductsRecyclerAdapter;
 import org.online.myfirebase.activity.seller.SellerHomeActivity;
 import org.online.myfirebase.model.Product;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class BuyerHomeActivity extends AppCompatActivity implements View.OnClickListener {
     private AppCompatActivity activity = BuyerHomeActivity.this;
     private RecyclerView recyclerViewProducts;
     private ArrayList<Product> listProducts;
-    private ProductsRecyclerAdapter productsRecyclerAdapter;
+    private BuyerProductsRecyclerAdapter BuyerproductsRecyclerAdapter;
     private DatabaseReference mDatabase;
     private Button ButtonBuyerChart,ButtonLogout,SeeCart;
     Context mContext;
@@ -63,11 +63,11 @@ public class BuyerHomeActivity extends AppCompatActivity implements View.OnClick
     private void initObject() {
         // Inisialisasi RecyclerView & komponennya
         listProducts = new ArrayList<>();
-        productsRecyclerAdapter = new ProductsRecyclerAdapter(mContext, listProducts);
+        BuyerproductsRecyclerAdapter = new BuyerProductsRecyclerAdapter(mContext, listProducts);
         recyclerViewProducts.setLayoutManager(new LinearLayoutManager(this, recyclerViewProducts.VERTICAL, false));
         recyclerViewProducts.setItemAnimator(new DefaultItemAnimator());
         recyclerViewProducts.setHasFixedSize(false);
-        recyclerViewProducts.setAdapter(productsRecyclerAdapter);
+        recyclerViewProducts.setAdapter(BuyerproductsRecyclerAdapter);
         /**
          * Inisialisasi dan mengambil Firebase Database Reference
          */
@@ -105,9 +105,9 @@ public class BuyerHomeActivity extends AppCompatActivity implements View.OnClick
                     listProducts.add(product);
                 }
 
-                productsRecyclerAdapter = new ProductsRecyclerAdapter(BuyerHomeActivity.this, listProducts);
-                recyclerViewProducts.setAdapter(productsRecyclerAdapter);
-                productsRecyclerAdapter.setOnItemClickListener(new ProductsRecyclerAdapter.OnItemClickListener() {
+                BuyerproductsRecyclerAdapter = new BuyerProductsRecyclerAdapter(BuyerHomeActivity.this, listProducts);
+                recyclerViewProducts.setAdapter(BuyerproductsRecyclerAdapter);
+                BuyerproductsRecyclerAdapter.setOnItemClickListener(new BuyerProductsRecyclerAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view,final int position) {
                         //inisialisasi view pada Detail product
@@ -135,4 +135,6 @@ public class BuyerHomeActivity extends AppCompatActivity implements View.OnClick
             }
         });
     }
-}
+
+    }
+

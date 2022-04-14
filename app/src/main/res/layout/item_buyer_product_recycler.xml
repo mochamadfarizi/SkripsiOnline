@@ -6,7 +6,6 @@
     android:layout_margin="5dp"
     android:elevation="8dp"
     app:cardCornerRadius="4dp">
-
     <LinearLayout
         android:id="@+id/list_item"
         android:layout_width="match_parent"
@@ -72,20 +71,11 @@
                 android:textColor="@color/white"
                 android:textSize="14dp" />
 
-            <Button
-                android:id="@+id/ButtonDelete"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:background="#673AB7"
-                android:gravity="center"
-                android:text="Delete"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+
 
 
         </LinearLayout>
 
 
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>
