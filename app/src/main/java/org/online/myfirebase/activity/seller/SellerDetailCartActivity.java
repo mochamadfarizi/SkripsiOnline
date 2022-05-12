@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,6 +25,7 @@ public class SellerDetailCartActivity extends AppCompatActivity {
         //inisalisasi layout
         setContentView(R.layout.activity_seller_detail_cart);
         //inisialisasi Firebase databse
+        FirebaseApp.initializeApp(this);
         mDatabase= FirebaseDatabase.getInstance().getReference();
         //inisialisasi view
         textInputEditTextProductName=(TextInputEditText) findViewById(R.id.textInputEditTextProductName);

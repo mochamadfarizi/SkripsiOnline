@@ -22,7 +22,7 @@ import android.os.Build;
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class test1 extends ViewTest{
+public class TestC2MyFirebase011 extends ViewTest{
     ActivityScenario<LoginActivity> scenario;
     private String packageName = "org.online";
     private String targetDevice = "9";

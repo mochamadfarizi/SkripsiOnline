@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -33,6 +34,7 @@ public class DetailProductBuyer extends AppCompatActivity  {
             //inisialisasi layout
             setContentView(R.layout.activity_detail_product_buyer);
             //inisialisasi pada Firebase
+            FirebaseApp.initializeApp(this);
             mDatabase=FirebaseDatabase.getInstance().getReference();
             //inisialisasi view
              textInputEditTextProductName=(TextInputEditText) findViewById(R.id.textInputEditTextProductName);

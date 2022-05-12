@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.textInputEditTextPassword);
         confirmPassword = (EditText) findViewById(R.id.textInputEditTextConfirmPassword);
         spinnerRole = (Spinner) findViewById(R.id.listRoles);
+        FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
         regis = (Button) findViewById(R.id.appCompatButtonRegister);

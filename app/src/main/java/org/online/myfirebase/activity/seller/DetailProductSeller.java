@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,7 +28,8 @@ public class DetailProductSeller extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_detail_product_seller);
-    //inisiasi Firebase database
+    //inisiasi Firebase databas
+        FirebaseApp.initializeApp(this);
     database=FirebaseDatabase.getInstance().getReference();
     //inisialisasi view
     textInputEditTextProductName=(TextInputEditText) findViewById(R.id.textInputEditTextProductName);

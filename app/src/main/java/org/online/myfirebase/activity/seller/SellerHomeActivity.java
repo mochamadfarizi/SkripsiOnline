@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +37,7 @@ public class SellerHomeActivity extends AppCompatActivity implements ProductsRec
     private TextView TextViewButton;
     private ArrayList<Product> listProducts;
     private ProductsRecyclerAdapter productsRecyclerAdapter;
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference mDatabase;
     private Button ButtonAddProduct, ButtonRefreshProduct, ButtonBuyerCart, ButtonLogout;
     Context mContext;
 
@@ -52,6 +53,7 @@ public class SellerHomeActivity extends AppCompatActivity implements ProductsRec
         ButtonLogout = (Button) findViewById(R.id.ButtonLogout);
 
         //inisialisasi Firebase
+        FirebaseApp.initializeApp(this);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         iniObject();

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +42,8 @@ public class CartActivitySeller extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_cart_seller);
+        //inisialisasi firebase
+        FirebaseApp.initializeApp(this);
         mDatabase= FirebaseDatabase.getInstance().getReference();
         getSupportActionBar().hide();
         initViews();

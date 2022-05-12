@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -37,6 +38,7 @@ public class AddProductActivity extends AppCompatActivity  {
         addProduct = (Button) findViewById(R.id.appCompatButtonAddProduct);
         back = (Button) findViewById(R.id.appCompatButtonCancelAddProduct);
         //menginisialisasi firebase
+        FirebaseApp.initializeApp(this);
         mDatabase=FirebaseDatabase.getInstance().getReference();
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override

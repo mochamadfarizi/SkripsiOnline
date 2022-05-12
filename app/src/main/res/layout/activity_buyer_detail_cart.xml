@@ -103,15 +103,6 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/ButtonDeleteFromCart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:textColor="@color/white"
-            android:background="#FF0000"
-            android:text="Delete From Cart" />
-
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ButtonBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
