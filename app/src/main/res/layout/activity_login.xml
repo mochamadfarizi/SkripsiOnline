@@ -74,4 +74,5 @@
             android:textColor="@color/colorText"/>
     </LinearLayout>
 
+
 </androidx.core.widget.NestedScrollView>

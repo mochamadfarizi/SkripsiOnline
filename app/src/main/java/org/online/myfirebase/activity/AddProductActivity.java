@@ -48,7 +48,8 @@ public class AddProductActivity extends AppCompatActivity  {
                     //pemanggilan method post dengan parameter model
                     postProduct(new Product(productName.getText().toString(),ProductPrice.getText().toString()));
                 }else {
-                    Snackbar.make(findViewById(R.id.appCompatButtonAddProduct), "Data barang tidak boleh kosong", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(findViewById(R.id.appCompatButtonAddProduct), "Data barang tidak boleh kosong",
+                            Snackbar.LENGTH_LONG).show();
                     InputMethodManager imm = (InputMethodManager)
                             getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(
@@ -75,7 +76,9 @@ public class AddProductActivity extends AppCompatActivity  {
             public void onSuccess(Void aVoid) {
                 productName.setText("");
                 ProductPrice.setText("");
-                Snackbar.make(findViewById(R.id.appCompatButtonAddProduct), "Succes for added data to Firebase!", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.appCompatButtonAddProduct),
+                        "Succes for added data to Firebase!",
+                        Snackbar.LENGTH_LONG).show();
             }
         });
     }

@@ -35,8 +35,6 @@ public class DetailProductSeller extends AppCompatActivity implements View.OnCli
     textInputEditTextProductName=(TextInputEditText) findViewById(R.id.textInputEditTextProductName);
     textInputEditTextProductPrice=(TextInputEditText) findViewById(R.id.textInputEditTextProductPrice);
     ButtonBack=(AppCompatButton)findViewById(R.id.ButtonBack);
-
-
     //perintah untuk mengeset data pada Data yang tersimpan pada adapter
     String nama=getIntent().getStringExtra("nama");
     String price=getIntent().getStringExtra("price");
@@ -46,8 +44,6 @@ public class DetailProductSeller extends AppCompatActivity implements View.OnCli
     initListeners();
 
 }
-
-
     private void initListeners() {
 
         ButtonBack.setOnClickListener(this);

@@ -23,11 +23,13 @@ import org.online.myfirebase.model.user;
 import java.util.List;
 
 public class DetailProductBuyer extends AppCompatActivity  {
-        private TextInputEditText textInputEditTextProductName,textInputEditTextProductPrice,textInputEditTextProductQuantity,textInputEditTextProductUser;
+        private TextInputEditText textInputEditTextProductName,
+                textInputEditTextProductPrice,
+                textInputEditTextProductQuantity,
+                textInputEditTextProductUser;
         private AppCompatButton ButtonAddToCart,ButtonBack;
         private DatabaseReference mDatabase;
         private Cart cart;
-
         private List<user> listUsers;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -53,12 +55,19 @@ public class DetailProductBuyer extends AppCompatActivity  {
                 @Override
                 public void onClick(View view) {
 
-                    if(!isEmpty(textInputEditTextProductUser.getText().toString()) && !isEmpty(textInputEditTextProductName.getText().toString()) && !isEmpty(textInputEditTextProductPrice.getText().toString()) && !isEmpty(textInputEditTextProductQuantity.getText().toString()))
+                    if(!isEmpty(textInputEditTextProductUser.getText().toString()) &&
+                            !isEmpty(textInputEditTextProductName.getText().toString()) &&
+                            !isEmpty(textInputEditTextProductPrice.getText().toString()) &&
+                            !isEmpty(textInputEditTextProductQuantity.getText().toString()))
                     {
                         //pemanggilan method post dengan parameter model
-                        postCartFirebase(new Cart(textInputEditTextProductUser.getText().toString(),textInputEditTextProductName.getText().toString(),textInputEditTextProductPrice.getText().toString(),textInputEditTextProductQuantity.getText().toString()));
+                        postCartFirebase(new Cart(textInputEditTextProductUser.getText().toString(),
+                                textInputEditTextProductName.getText().toString(),
+                                textInputEditTextProductPrice.getText().toString(),
+                                textInputEditTextProductQuantity.getText().toString()));
                     }else {
-                        Snackbar.make(findViewById(R.id.ButtonAddToCart), "Data Can't be Empty", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(R.id.ButtonAddToCart), "Data Can't be Empty",
+                                Snackbar.LENGTH_LONG).show();
                         InputMethodManager imm = (InputMethodManager)
                                 getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(
@@ -95,7 +104,8 @@ public class DetailProductBuyer extends AppCompatActivity  {
                 textInputEditTextProductName.setText(nama);
                 textInputEditTextProductPrice.setText(price);
                 textInputEditTextProductQuantity.setText("");
-                Snackbar.make(findViewById(R.id.ButtonAddToCart),"Successfully Add to Cart",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.ButtonAddToCart),"Successfully Add to Cart",
+                        Snackbar.LENGTH_LONG).show();
             }
         });
     }

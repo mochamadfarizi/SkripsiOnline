@@ -29,7 +29,7 @@ import org.online.myfirebase.activity.seller.SellerHomeActivity;
 import org.online.myfirebase.model.Cart;
 import java.util.ArrayList;
 
-public class CartActivityBuyer extends AppCompatActivity implements View.OnClickListener, CartsRecyclerAdapter.dataListener {
+public class CartActivityBuyer extends AppCompatActivity implements View.OnClickListener, BuyerCartsRecyclerAdapter.dataListener {
         private ArrayList<Cart> listCarts;
         private AppCompatTextView textViewName;
         private DatabaseReference mDatabase;

@@ -28,8 +28,9 @@ import java.util.List;
 public class BuyerCartsRecyclerAdapter extends RecyclerView.Adapter<BuyerCartsRecyclerAdapter.BuyerCartsViewHolder>  {
     private List<Cart> listCarts;
     private Context mContext;
-    private CartsRecyclerAdapter.OnItemClickListener mListener;
-    CartsRecyclerAdapter.dataListener listener;
+    private OnItemClickListener mListener;
+   dataListener listener;
+
     public interface dataListener{
         void onDeleteData(Cart data, int position);
     }
@@ -97,13 +98,9 @@ public class BuyerCartsRecyclerAdapter extends RecyclerView.Adapter<BuyerCartsRe
     public int getItemCount() {
         return listCarts.size();
     }
-
-
-
-    public void setOnItemClickListener(CartsRecyclerAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
-
     public interface OnItemClickListener {
         void onItemClick(android.view.View view, int position);
     }
@@ -116,7 +113,7 @@ public class BuyerCartsRecyclerAdapter extends RecyclerView.Adapter<BuyerCartsRe
         public RecyclerView recyclerView;
         public LinearLayout list_cart;
 
-        public BuyerCartsViewHolder(View view, final CartsRecyclerAdapter.OnItemClickListener listener) {
+        public BuyerCartsViewHolder(View view, final BuyerCartsRecyclerAdapter.OnItemClickListener listener) {
             super(view);
             cartID = (TextView) view.findViewById(R.id.CartID);
             productName = (TextView) view.findViewById(R.id.ProductName);

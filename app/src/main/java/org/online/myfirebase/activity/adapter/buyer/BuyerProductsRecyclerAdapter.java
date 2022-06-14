@@ -30,7 +30,6 @@ public class BuyerProductsRecyclerAdapter extends RecyclerView.Adapter<BuyerProd
         this.mContext = context;
 
     }
-
     @NonNull
     @Override
     public ProductsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -51,6 +50,7 @@ public class BuyerProductsRecyclerAdapter extends RecyclerView.Adapter<BuyerProd
     public int getItemCount() {
             return   listProducts.size();
     }
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener =  listener;
     }
@@ -58,6 +58,7 @@ public class BuyerProductsRecyclerAdapter extends RecyclerView.Adapter<BuyerProd
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
+
     public class ProductsViewHolder extends RecyclerView.ViewHolder {
         public TextView productId;
         public TextView productName;

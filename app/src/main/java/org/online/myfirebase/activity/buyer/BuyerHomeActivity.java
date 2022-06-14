@@ -119,10 +119,7 @@ public class BuyerHomeActivity extends AppCompatActivity implements View.OnClick
                         intent.putExtra("nama1",listProducts.get(position).getName());
                         intent.putExtra("price1",listProducts.get(position).getPrice());
                         startActivity(intent);
-
-
                     }
-
                 });
             }
 

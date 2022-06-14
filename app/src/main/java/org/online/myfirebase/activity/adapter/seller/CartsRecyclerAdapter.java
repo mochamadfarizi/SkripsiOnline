@@ -63,7 +63,7 @@ public class CartsRecyclerAdapter extends RecyclerView.Adapter<CartsRecyclerAdap
                             case 0:
                                     /*
                                   Berpindah Activity pada halaman layout updateData
-                                  dan mengambil data pada listMahasiswa, berdasarkan posisinya
+                                  dan mengambil data pada listCart, berdasarkan posisinya
                                   untuk dikirim pada activity Seller Detail Cart
                                  */
                             Bundle bundle = new Bundle();
