@@ -25,11 +25,10 @@
         <activity android:name=".activity.seller.SellerHomeActivity"/>
         <activity android:name=".activity.seller.DetailProductSeller"/>
         <activity android:name=".activity.seller.CartActivitySeller"/>
-        <activity android:name=".activity.seller.SellerDetailCartActivity"/>
         <activity android:name=".activity.buyer.BuyerHomeActivity"/>
         <activity android:name=".activity.buyer.DetailProductBuyer"/>
         <activity android:name=".activity.buyer.CartActivityBuyer"/>
-        <activity android:name=".activity.buyer.BuyerDetailCartActivity"/>
+        <activity android:name=".activity.DetailCart"/>
     </application>
 
 </manifest>

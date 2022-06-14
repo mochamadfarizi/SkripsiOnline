@@ -1,7 +1,6 @@
 package org.online.myfirebase.activity.buyer;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,20 +22,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.online.myfirebase.R;
-import org.online.myfirebase.activity.adapter.buyer.BuyerCartsRecyclerAdapter;
-import org.online.myfirebase.activity.adapter.seller.CartsRecyclerAdapter;
-import org.online.myfirebase.activity.seller.SellerHomeActivity;
+import org.online.myfirebase.activity.adapter.CartsRecyclerAdapter;
 import org.online.myfirebase.model.Cart;
+
 import java.util.ArrayList;
 
-public class CartActivityBuyer extends AppCompatActivity implements View.OnClickListener, BuyerCartsRecyclerAdapter.dataListener {
-        private ArrayList<Cart> listCarts;
-        private AppCompatTextView textViewName;
-        private DatabaseReference mDatabase;
-        private Button ButtonRefreshCart, ButtonBack;
-        private RecyclerView recyclerViewCarts;
-        private BuyerCartsRecyclerAdapter cartsRecyclerAdapter;
-        Context mContext;
+public class CartActivityBuyer extends AppCompatActivity implements View.OnClickListener, CartsRecyclerAdapter.dataListener {
+    private ArrayList<Cart> listCarts;
+    private AppCompatTextView textViewName;
+    private DatabaseReference mDatabase;
+    private Button ButtonRefreshCart, ButtonBack;
+    private RecyclerView recyclerViewCarts;
+    private CartsRecyclerAdapter cartsRecyclerAdapter;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,7 @@ public class CartActivityBuyer extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_cart_buyer);
         //inisialisasiFirebase
         FirebaseApp.initializeApp(this);
-        mDatabase=FirebaseDatabase.getInstance().getReference();
+        mDatabase= FirebaseDatabase.getInstance().getReference();
         initViews();
         initObject();
         initListeners();
@@ -61,7 +59,7 @@ public class CartActivityBuyer extends AppCompatActivity implements View.OnClick
     }
     private void initObject() {
         listCarts = new ArrayList<>();
-        cartsRecyclerAdapter = new BuyerCartsRecyclerAdapter(mContext, listCarts);
+        cartsRecyclerAdapter = new CartsRecyclerAdapter(mContext, listCarts);
         recyclerViewCarts.setLayoutManager(new LinearLayoutManager(this, recyclerViewCarts.VERTICAL, true));
         recyclerViewCarts.setItemAnimator(new DefaultItemAnimator());
         recyclerViewCarts.setHasFixedSize(false);
@@ -101,7 +99,7 @@ public class CartActivityBuyer extends AppCompatActivity implements View.OnClick
                     cart.setKey(mDataSnapshot.getKey());
                     listCarts.add(cart);
                 }
-                cartsRecyclerAdapter = new BuyerCartsRecyclerAdapter(CartActivityBuyer.this,listCarts);
+                cartsRecyclerAdapter = new CartsRecyclerAdapter(CartActivityBuyer.this,listCarts);
                 recyclerViewCarts.setAdapter(cartsRecyclerAdapter);
             }
 

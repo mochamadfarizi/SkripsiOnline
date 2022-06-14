@@ -1,4 +1,4 @@
-package org.online.myfirebase.activity.buyer;
+package org.online.myfirebase.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.online.myfirebase.R;
 import org.online.myfirebase.model.Cart;
 
-public class BuyerDetailCartActivity extends AppCompatActivity implements View.OnClickListener{
+public class DetailCart extends AppCompatActivity implements View.OnClickListener{
     private TextInputEditText textInputEditTextProductName,
                               textInputEditTextProductPrice,
                               textInputEditTextProductBuyer,
@@ -25,7 +25,7 @@ public class BuyerDetailCartActivity extends AppCompatActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //inisialisasi Layout
-        setContentView(R.layout.activity_buyer_detail_cart);
+        setContentView(R.layout.activity_detail_cart);
         //inisialisasi Firebase databse
         FirebaseApp.initializeApp(this);
         mDatabase=FirebaseDatabase.getInstance().getReference();

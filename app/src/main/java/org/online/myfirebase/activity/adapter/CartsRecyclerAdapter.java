@@ -1,4 +1,4 @@
-package org.online.myfirebase.activity.adapter.seller;
+package org.online.myfirebase.activity.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -16,10 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.online.myfirebase.R;
-import org.online.myfirebase.activity.seller.CartActivitySeller;
-import org.online.myfirebase.activity.seller.SellerDetailCartActivity;
+import org.online.myfirebase.activity.DetailCart;
 import org.online.myfirebase.model.Cart;
-import org.online.myfirebase.model.Product;
 
 import java.util.List;
 
@@ -34,7 +32,7 @@ public class CartsRecyclerAdapter extends RecyclerView.Adapter<CartsRecyclerAdap
     public CartsRecyclerAdapter(Context context, List<Cart> listCarts) {
         this.listCarts = listCarts;
         mContext = context;
-        listener = (CartActivitySeller)context;
+        listener = (dataListener) context;
     }
     @NonNull
     @Override
@@ -72,7 +70,7 @@ public class CartsRecyclerAdapter extends RecyclerView.Adapter<CartsRecyclerAdap
                             bundle.putString("price_cart", listCarts.get(position).getProductPrice());
                             bundle.putString("quantity_cart", listCarts.get(position).getProductQuantity());
                             bundle.putString("getPrimaryKey", listCarts.get(position).getKey());
-                            Intent intent =new Intent(view.getContext(),SellerDetailCartActivity.class);
+                            Intent intent =new Intent(view.getContext(), DetailCart.class);
                             intent.putExtras(bundle);
                             mContext.startActivity(intent);
                             break;

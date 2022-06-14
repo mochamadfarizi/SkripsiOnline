@@ -1,7 +1,6 @@
 package org.online.myfirebase.activity.seller;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.online.myfirebase.R;
-import org.online.myfirebase.activity.adapter.seller.CartsRecyclerAdapter;
+import org.online.myfirebase.activity.adapter.CartsRecyclerAdapter;
 import org.online.myfirebase.model.Cart;
 
 import java.util.ArrayList;
@@ -104,6 +103,7 @@ public class CartActivitySeller extends AppCompatActivity implements View.OnClic
                 }
                 cartsRecyclerAdapter= new CartsRecyclerAdapter(CartActivitySeller.this,listCarts);
                 recyclerViewCarts.setAdapter(cartsRecyclerAdapter);
+
             }
 
             @Override
