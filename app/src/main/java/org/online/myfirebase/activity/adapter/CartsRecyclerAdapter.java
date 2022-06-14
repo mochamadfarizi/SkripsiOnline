@@ -26,14 +26,17 @@ public class CartsRecyclerAdapter extends RecyclerView.Adapter<CartsRecyclerAdap
     private Context mContext;
     private OnItemClickListener mListener;
     dataListener listener;
+
     public interface dataListener{
         void onDeleteData(Cart data, int position);
     }
+
     public CartsRecyclerAdapter(Context context, List<Cart> listCarts) {
         this.listCarts = listCarts;
         mContext = context;
         listener = (dataListener) context;
     }
+
     @NonNull
     @Override
     public CartsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,6 +45,7 @@ public class CartsRecyclerAdapter extends RecyclerView.Adapter<CartsRecyclerAdap
                 .inflate(R.layout.item_cart_recycler, parent, false);
         return new CartsViewHolder(itemView, mListener);
     }
+
     @Override
     public void onBindViewHolder(CartsViewHolder holder, @SuppressLint("RecyclerView")int position) {
         holder.cartID.setText(String.valueOf(listCarts.get(position).getKey()));
