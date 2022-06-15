@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
 
-                        Intent buyer = new Intent(activity, BuyerHomeActivity.class);
+                        Intent buyer = new Intent(activity, SellerHomeActivity.class);
                         buyer.putExtra("Username", nama.getText().toString().trim());
                         startActivity(buyer);
                         Toast.makeText(getApplicationContext(), "Welcome here " + nama.getText().toString(), Toast.LENGTH_LONG).show();

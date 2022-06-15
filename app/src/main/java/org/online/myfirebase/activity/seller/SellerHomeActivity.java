@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.online.myfirebase.R;
 import org.online.myfirebase.activity.AddProductActivity;
+import org.online.myfirebase.activity.CartActivity;
 import org.online.myfirebase.activity.adapter.seller.ProductsRecyclerAdapter;
 import org.online.myfirebase.model.Product;
 
@@ -74,7 +75,7 @@ public class SellerHomeActivity extends AppCompatActivity implements ProductsRec
         ButtonBuyerCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SellerHomeActivity.this, CartActivitySeller.class));
+                startActivity(new Intent(SellerHomeActivity.this, CartActivity.class));
             }
         });
         ButtonLogout.setOnClickListener(new View.OnClickListener() {

@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.online.myfirebase.R;
+import org.online.myfirebase.activity.CartActivity;
 import org.online.myfirebase.activity.adapter.buyer.BuyerProductsRecyclerAdapter;
 import org.online.myfirebase.activity.adapter.seller.ProductsRecyclerAdapter;
 import org.online.myfirebase.activity.seller.SellerHomeActivity;
@@ -83,7 +84,7 @@ public class BuyerHomeActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ButtonBuyerCart:
-               startActivity(new Intent(BuyerHomeActivity.this,CartActivityBuyer.class));
+               startActivity(new Intent(BuyerHomeActivity.this, CartActivity.class));
                 break;
             case R.id.ButtonLogout:
                 finish();

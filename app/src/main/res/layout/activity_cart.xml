@@ -4,22 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBackground">
+
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/titleCartBuyer"
+        android:id="@+id/titleCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="BUYER CART"
-        android:textSize="30dp"
-        android:textColor="@color/white"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="40dp"
+        android:text="INFORMATION CART"
+        android:textColor="@color/white"
+        android:textSize="30dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCarts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
     <Button
         android:id="@+id/ButtonRefreshCart"
         android:layout_width="match_parent"
@@ -29,7 +29,6 @@
         android:backgroundTint="#43FF82"
         android:textColor="@color/black"
         android:text="Refresh Cart" />
-
     <Button
         android:id="@+id/ButtonBack"
         android:layout_width="match_parent"

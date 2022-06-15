@@ -55,33 +55,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
-  /**private void submitUser(user user) {
-
-         * Ini adalah kode yang digunakan untuk mengirimkan data ke Firebase Realtime Database
-         * dan juga kita set onSuccessListener yang berisi kode yang akan dijalankan
-         * ketika data berhasil ditambahkan
-
-       // database.child("user").push().setValue(user).addOnSuccessListener(this, new OnSuccessListener<Void>() {
-          //  @Override
-          //  public void onSuccess(Void aVoid) {
-            //    nama.setText("");
-             //   password.setText("");
-              //  confirmPassword.setText("");
-            //    spinnerRole.getSelectedItem().toString();
-              //  Snackbar.make(findViewById(R.id.appCompatButtonRegister), "Data berhasil ditambahkan", Snackbar.LENGTH_LONG).show();
-          //  }
-      //  });
-   }*/
-
-    private boolean isEmpty(String s) {
-        return TextUtils.isEmpty(s);
-    }
-
-    public static Intent getActIntent(Activity activity) {
-        // kode untuk pengambilan Intent
-        return new Intent(activity, RegisterActivity.class);
-    }
     //Proses Submit register
     private void registerUser(){
         //inisialisasi layout
@@ -121,9 +94,11 @@ public class RegisterActivity extends AppCompatActivity {
                                @Override
                                public void onComplete(@NonNull Task<Void> task) {
                                    if(task.isSuccessful()){
-                                       Toast.makeText(RegisterActivity.this,"Succes! Enjoy ur account! ",Toast.LENGTH_SHORT).show();
+                                       Toast.makeText(RegisterActivity.this,"Succes! Enjoy ur account! ",
+                                               Toast.LENGTH_SHORT).show();
                                    }else{
-                                       Toast.makeText(RegisterActivity.this,"Failed to regis ",Toast.LENGTH_SHORT).show();
+                                       Toast.makeText(RegisterActivity.this,"Failed to regis ",
+                                               Toast.LENGTH_SHORT).show();
                                    }
                                }
                            });

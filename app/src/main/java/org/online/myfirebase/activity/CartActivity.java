@@ -1,4 +1,4 @@
-package org.online.myfirebase.activity.buyer;
+package org.online.myfirebase.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -26,67 +26,68 @@ import org.online.myfirebase.activity.adapter.CartsRecyclerAdapter;
 import org.online.myfirebase.model.Cart;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CartActivityBuyer extends AppCompatActivity implements View.OnClickListener, CartsRecyclerAdapter.dataListener {
-    private ArrayList<Cart> listCarts;
+public class CartActivity extends AppCompatActivity implements View.OnClickListener, CartsRecyclerAdapter.dataListener {
+    private AppCompatActivity activity = CartActivity.this;
     private AppCompatTextView textViewName;
-    private DatabaseReference mDatabase;
-    private Button ButtonRefreshCart, ButtonBack;
     private RecyclerView recyclerViewCarts;
+    private List<Cart> listCarts;
     private CartsRecyclerAdapter cartsRecyclerAdapter;
+    private DatabaseReference mDatabase;
+    private Cart cart;
+    private Button ButtonRefreshCart, ButtonBack;
     Context mContext;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart_buyer);
-        //inisialisasiFirebase
+    protected void onCreate(Bundle saveInstanceState) {
+        super.onCreate(saveInstanceState);
+        setContentView(R.layout.activity_cart);
+        //inisialisasi firebase
         FirebaseApp.initializeApp(this);
         mDatabase= FirebaseDatabase.getInstance().getReference();
+        getSupportActionBar().hide();
         initViews();
-        initObject();
         initListeners();
+        initObjects();
     }
-    private void initViews() {
+
+    private void initViews(){
         textViewName = (AppCompatTextView) findViewById(R.id.textViewName);
         recyclerViewCarts = (RecyclerView) findViewById(R.id.recyclerViewCarts);
         ButtonRefreshCart = (Button)findViewById(R.id.ButtonRefreshCart);
         ButtonBack = (Button)findViewById(R.id.ButtonBack);
     }
-    private void initListeners() {
+    private void initListeners(){
         ButtonRefreshCart.setOnClickListener(this);
         ButtonBack.setOnClickListener(this);
+
     }
-    private void initObject() {
+    private void initObjects() {
         listCarts = new ArrayList<>();
         cartsRecyclerAdapter = new CartsRecyclerAdapter(mContext, listCarts);
         recyclerViewCarts.setLayoutManager(new LinearLayoutManager(this, recyclerViewCarts.VERTICAL, true));
         recyclerViewCarts.setItemAnimator(new DefaultItemAnimator());
         recyclerViewCarts.setHasFixedSize(false);
         recyclerViewCarts.setAdapter(cartsRecyclerAdapter);
-        /**
-         * Inisialisasi dan mengambil Firebase Database Reference
-         */
-        getCartFromFirebase();
-
+        cart = new Cart();
+        getCartFirebase();
     }
-
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
+    public void onClick(View view) {
+        switch (view.getId()){
             case R.id.ButtonRefreshCart:
-                getCartFromFirebase();
+                getCartFirebase();
                 break;
             case R.id.ButtonBack:
                 finish();
                 break;
         }
+
     }
 
-    private void getCartFromFirebase() {
-        //inisialisasi firebase database
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        // method get data
+    private void getCartFirebase() {
+        //inisialisasi Firebase
+        mDatabase=FirebaseDatabase.getInstance().getReference();
+        //method get data cart
         mDatabase.child("Cart").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -94,13 +95,15 @@ public class CartActivityBuyer extends AppCompatActivity implements View.OnClick
                  * Saat ada data baru, masukkan datanya ke ArrayList
                  */
                 listCarts = new ArrayList<>();
-                for (DataSnapshot mDataSnapshot : snapshot.getChildren()) {
+                //perulangan untuk mengambil setiap data pada Cart
+                for(DataSnapshot mDataSnapshot :snapshot.getChildren()){
                     Cart cart = mDataSnapshot.getValue(Cart.class);
                     cart.setKey(mDataSnapshot.getKey());
                     listCarts.add(cart);
                 }
-                cartsRecyclerAdapter = new CartsRecyclerAdapter(CartActivityBuyer.this,listCarts);
+                cartsRecyclerAdapter= new CartsRecyclerAdapter(CartActivity.this,listCarts);
                 recyclerViewCarts.setAdapter(cartsRecyclerAdapter);
+
             }
 
             @Override
@@ -113,21 +116,17 @@ public class CartActivityBuyer extends AppCompatActivity implements View.OnClick
                 System.out.println(error.getDetails()+" "+error.getMessage());
             }
         });
-    }
 
+    }
 
     @Override
     public void onDeleteData(Cart data, int position) {
-        /**
-         * Kode Yang kemudian akan mendelete data di Firebase Realtime DB
-         * berdasarkan key barang.
-         * Jika sukses akan memunculkan Toast
-         */
         mDatabase.child("Cart").child(data.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(CartActivityBuyer.this, "Data has been removed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartActivity.this, "Data has been removed", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }

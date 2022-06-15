@@ -11,7 +11,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
-import org.online.myfirebase.activity.buyer.CartActivityBuyer;
+import org.online.myfirebase.activity.CartActivity;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
@@ -20,19 +20,19 @@ import org.robolectric.annotation.Config;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class TestC2MyFirebase081 extends ViewTest {
-    ActivityScenario<CartActivityBuyer> scenario;
+    ActivityScenario<CartActivity> scenario;
     private String packageName = "org.online";
     private String targetDevice = "9";
     private int minSDK = 21;
-    private String actName = "CartActivityBuyer";
-    private String layoutName = "activity_cart_buyer";
+    private String actName = "CartActivity";
+    private String layoutName = "activity_cart";
     private String backwardComp = "AppCompatActivity";
     //private String packName;
     //ResourceTest rsc;
 
     @Before
     public void initTest() {
-        scenario = ActivityScenario.launch(CartActivityBuyer.class);
+        scenario = ActivityScenario.launch(CartActivity.class);
         scenario.moveToState(Lifecycle.State.CREATED);
     }
 
@@ -54,7 +54,7 @@ public class TestC2MyFirebase081 extends ViewTest {
     @Test
     public void check_03_TextView(){
         scenario.onActivity(activity -> {
-            testViewExist("titleCartBuyer","TextView", activity);
+            testViewExist("titleCart","TextView", activity);
         });
     }
 
